@@ -24,15 +24,15 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(String userMail){
+    public String generateToken(String userName){
         Map<String,Object> claims= new HashMap<>();
-        return createToken(claims,userMail);
+        return createToken(claims,userName);
     }
 
-    private String createToken(Map<String,Object> claims,String userMail){
+    private String createToken(Map<String,Object> claims,String userName){
         return Jwts.builder()
                     .setClaims(claims)
-                    .setSubject(userMail)
+                    .setSubject(userName)
                     .setIssuedAt(new Date(System.currentTimeMillis()))
                     .setExpiration(new Date(System.currentTimeMillis()+ 1200*60*4))
                     .signWith(getSignKey(),SignatureAlgorithm.HS256)
