@@ -24,12 +24,13 @@ public class UserController {
         this.userService = userService;
     }
     
-    @GetMapping
+    @GetMapping("/getall")
     public List<User> getAlluser(){
         return userService.getAllUser();
     }
+    
 
-    @PostMapping
+    @PostMapping("/save")
     public User saveUser(@Valid @RequestBody User user) {
         
         return userService.saveUser(user);
